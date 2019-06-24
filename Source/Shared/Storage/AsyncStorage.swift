@@ -14,34 +14,34 @@ public class AsyncStorage<T> {
 }
 
 extension AsyncStorage {
-  public func entry(forKey key: String, completion: @escaping (Result<Entry<T>>) -> Void) {
+  public func entry(forKey key: String, completion: @escaping (Result<Entry<T>, Error>) -> Void) {
     serialQueue.async { [weak self] in
       guard let `self` = self else {
-        completion(Result.error(StorageError.deallocated))
+        completion(Result.failure(StorageError.deallocated))
         return
       }
 
       do {
         let anEntry = try self.innerStorage.entry(forKey: key)
-        completion(Result.value(anEntry))
+        completion(Result.success(anEntry))
       } catch {
-        completion(Result.error(error))
+        completion(Result.failure(error))
       }
     }
   }
 
-  public func removeObject(forKey key: String, completion: @escaping (Result<()>) -> Void) {
+  public func removeObject(forKey key: String, completion: @escaping (Result<(), Error>) -> Void) {
     serialQueue.async { [weak self] in
       guard let `self` = self else {
-        completion(Result.error(StorageError.deallocated))
+        completion(Result.failure(StorageError.deallocated))
         return
       }
 
       do {
         try self.innerStorage.removeObject(forKey: key)
-        completion(Result.value(()))
+        completion(Result.success(()))
       } catch {
-        completion(Result.error(error))
+        completion(Result.failure(error))
       }
     }
   }
@@ -50,56 +50,56 @@ extension AsyncStorage {
     _ object: T,
     forKey key: String,
     expiry: Expiry? = nil,
-    completion: @escaping (Result<()>) -> Void) {
+    completion: @escaping (Result<(), Error>) -> Void) {
     serialQueue.async { [weak self] in
       guard let `self` = self else {
-        completion(Result.error(StorageError.deallocated))
+        completion(Result.failure(StorageError.deallocated))
         return
       }
 
       do {
         try self.innerStorage.setObject(object, forKey: key, expiry: expiry)
-        completion(Result.value(()))
+        completion(Result.success(()))
       } catch {
-        completion(Result.error(error))
+        completion(Result.failure(error))
       }
     }
   }
 
-  public func removeAll(completion: @escaping (Result<()>) -> Void) {
+  public func removeAll(completion: @escaping (Result<(), Error>) -> Void) {
     serialQueue.async { [weak self] in
       guard let `self` = self else {
-        completion(Result.error(StorageError.deallocated))
+        completion(Result.failure(StorageError.deallocated))
         return
       }
 
       do {
         try self.innerStorage.removeAll()
-        completion(Result.value(()))
+        completion(Result.success(()))
       } catch {
-        completion(Result.error(error))
+        completion(Result.failure(error))
       }
     }
   }
 
-  public func removeExpiredObjects(completion: @escaping (Result<()>) -> Void) {
+  public func removeExpiredObjects(completion: @escaping (Result<(), Error>) -> Void) {
     serialQueue.async { [weak self] in
       guard let `self` = self else {
-        completion(Result.error(StorageError.deallocated))
+        completion(Result.failure(StorageError.deallocated))
         return
       }
 
       do {
         try self.innerStorage.removeExpiredObjects()
-        completion(Result.value(()))
+        completion(Result.success(()))
       } catch {
-        completion(Result.error(error))
+        completion(Result.failure(error))
       }
     }
   }
 
-  public func object(forKey key: String, completion: @escaping (Result<T>) -> Void) {
-    entry(forKey: key, completion: { (result: Result<Entry<T>>) in
+  public func object(forKey key: String, completion: @escaping (Result<T, Error>) -> Void) {
+    entry(forKey: key, completion: { (result: Result<Entry<T>, Error>) in
       completion(result.map({ entry in
         return entry.object
       }))
@@ -108,8 +108,8 @@ extension AsyncStorage {
 
   public func existsObject(
     forKey key: String,
-    completion: @escaping (Result<Bool>) -> Void) {
-    object(forKey: key, completion: { (result: Result<T>) in
+    completion: @escaping (Result<Bool, Error>) -> Void) {
+    object(forKey: key, completion: { (result: Result<T, Error>) in
       completion(result.map({ _ in
         return true
       }))
