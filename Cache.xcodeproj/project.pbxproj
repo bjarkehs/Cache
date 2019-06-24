@@ -170,6 +170,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		51B1DFD922C0F47E003FF0C0 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		BDEDD3561DBCE5B1007416A6 /* Cache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDEDD3781DBCEB8A007416A6 /* Cache-tvOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cache-tvOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D221E5BB20D00D9300BC940E /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
@@ -319,8 +320,8 @@
 		D2CF984F1F694FFA00CE8F68 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D28897041F8B79B300C61DEE /* JSONDecoder+Extensions.swift */,
 				D2CF98501F694FFA00CE8F68 /* Date+Extensions.swift */,
+				D28897041F8B79B300C61DEE /* JSONDecoder+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,21 +330,21 @@
 			isa = PBXGroup;
 			children = (
 				D2CF98531F694FFA00CE8F68 /* DataSerializer.swift */,
+				D221E5BF20D00DCC00BC940E /* Entry.swift */,
 				D2CF98551F694FFA00CE8F68 /* ExpirationMode.swift */,
 				D2CF98561F694FFA00CE8F68 /* Expiry.swift */,
 				D2CF98571F694FFA00CE8F68 /* ImageWrapper.swift */,
-				D2CF98591F694FFA00CE8F68 /* StorageError.swift */,
-				D2CF98861F695B8F00CE8F68 /* Types.swift */,
-				D2D4CC151FA3145000E4A2D5 /* MD5.swift */,
-				D2D4CC1F1FA3411300E4A2D5 /* JSONDictionaryWrapper.swift */,
 				D2D4CC231FA3426B00E4A2D5 /* JSONArrayWrapper.swift */,
-				D221E5BF20D00DCC00BC940E /* Entry.swift */,
-				D270146F20D1018A003B45C7 /* Transformer.swift */,
-				D270148B20D113EA003B45C7 /* Optional+Extension.swift */,
-				D270148F20D1251E003B45C7 /* TypeWrapper.swift */,
+				D2D4CC1F1FA3411300E4A2D5 /* JSONDictionaryWrapper.swift */,
+				D2D4CC151FA3145000E4A2D5 /* MD5.swift */,
 				D270149320D125AC003B45C7 /* MemoryCapsule.swift */,
-				D27014A420D129EB003B45C7 /* TransformerFactory.swift */,
 				D5A9D1B621134547005DBD3F /* ObservationToken.swift */,
+				D270148B20D113EA003B45C7 /* Optional+Extension.swift */,
+				D2CF98591F694FFA00CE8F68 /* StorageError.swift */,
+				D270146F20D1018A003B45C7 /* Transformer.swift */,
+				D27014A420D129EB003B45C7 /* TransformerFactory.swift */,
+				D2CF98861F695B8F00CE8F68 /* Types.swift */,
+				D270148F20D1251E003B45C7 /* TypeWrapper.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -351,16 +352,16 @@
 		D2CF985A1F694FFA00CE8F68 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				D221E5BB20D00D9300BC940E /* MemoryStorage.swift */,
-				D221E5C320D00DDB00BC940E /* DiskStorage.swift */,
-				D270147320D101F3003B45C7 /* StorageAware.swift */,
-				D270147720D1046A003B45C7 /* HybridStorage.swift */,
-				D270147B20D107DA003B45C7 /* SyncStorage.swift */,
-				D270147F20D10982003B45C7 /* Storage.swift */,
 				D270148320D10E76003B45C7 /* AsyncStorage.swift */,
-				D270148720D11040003B45C7 /* Storage+Transform.swift */,
-				D5A9D1C221144B65005DBD3F /* StorageObservationRegistry.swift */,
+				D221E5C320D00DDB00BC940E /* DiskStorage.swift */,
+				D270147720D1046A003B45C7 /* HybridStorage.swift */,
 				D51146522118337500197DCE /* KeyObservationRegistry.swift */,
+				D221E5BB20D00D9300BC940E /* MemoryStorage.swift */,
+				D270147F20D10982003B45C7 /* Storage.swift */,
+				D270148720D11040003B45C7 /* Storage+Transform.swift */,
+				D270147320D101F3003B45C7 /* StorageAware.swift */,
+				D5A9D1C221144B65005DBD3F /* StorageObservationRegistry.swift */,
+				D270147B20D107DA003B45C7 /* SyncStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -487,6 +488,7 @@
 		D5DC59D61C20593E003BD79B = {
 			isa = PBXGroup;
 			children = (
+				51B1DFD922C0F47E003FF0C0 /* Package.swift */,
 				D5643E341C43F2CC00582E17 /* Playgrounds */,
 				D5291C081C28220B00B702C9 /* Source */,
 				D5DC59FA1C205AC9003BD79B /* Tests */,
